@@ -1,0 +1,31 @@
+<%- include("header") -%>
+    <!-- Used to add layouts so we do not have to write headers and footers multiple times. -->
+
+    <p class="listTitle">Your Tasklists</p>
+
+    <div class="box">
+        <form class="item"  action="">
+            <input type="checkbox" disabled>
+            <a href="/" class="taskname">Default List</a>
+        </form>
+
+        <% items.forEach(function (task) {%>
+            <form action="/deleteList" class="item" method="post">
+
+                <p class="dates">Created on : <%=task.dateCreated%></p>
+
+                <!-- <div class="item"> -->
+                <input type="checkbox" name="checkbox" value="<%=task._id %>" onChange="this.form.submit()">
+                <!-- "this.form.submit()" to submit the form as we don't have a submit button here -->
+                <a href="/<%=task.name %>" class="taskname"><%=task.name %></a>
+                <!-- </div> -->
+            </form>
+        <%})%>
+
+                <form action="/createList" class="item" method="post">
+                    <textarea type="text" name="newItem" rows="2" placeholder="Create new list 📝" autocomplete="off"
+                        autofocus></textarea>
+                    <button type="submit" name="button">+</button>
+                </form>
+    </div>
+    <%- include("footer") -%>

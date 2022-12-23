@@ -1,0 +1,34 @@
+<%- include("header") -%>
+    <!-- Used to add layouts so we do not have to write headers and footers multiple times. -->
+
+    <h3 class="listlink"><a href="/all_lists" class="lists">All Lists</a></h3>
+
+    <%if(listTitle !=""){%>
+        <p class="listTitle">Tasks in "<%=listTitle%>" List</p>
+    <%}else{%>
+        <p class="listTitle"> </p>
+    <%}%>
+
+    <div class="box">
+
+        <% items.forEach(function (task) {%>
+            <form action="/delete" class="item" method="post">
+                <input type="hidden" name="listName" value="<%=listTitle%>">
+
+                <!-- <div class="item"> -->
+                <input type="checkbox" name="checkbox" value="<%=task.id%>" onChange="this.form.submit()">
+                <!-- "this.form.submit()" to submit the form as we don't have a submit button here -->
+                <p>
+                    <%=task.name %>
+                </p>
+                <!-- </div> -->
+            </form>
+            <%})%>
+
+                <form action="/" class="item" method="post">
+                    <textarea type="text" name="newItem" rows="2" placeholder="Add new task 📝" autocomplete="off"
+                        autofocus></textarea>
+                    <button type="submit" name="button" value="<%=listTitle%>">+</button>
+                </form>
+    </div>
+    <%- include("footer") -%>
