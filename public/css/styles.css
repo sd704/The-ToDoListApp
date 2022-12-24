@@ -66,11 +66,11 @@ h3 {
     padding: 20px;
 }
 
-@media (max-width:900px) {
+@media (max-width:768px) {
 
     .today {
         position: relative !important;
-        left:0px;
+        left: 0px;
         text-align: center;
     }
 
